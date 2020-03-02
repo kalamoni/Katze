@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DSb-fP-K6b">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorites-->
+        <scene sceneID="6uD-ZE-crd">
+            <objects>
+                <viewController id="p7q-AC-Hgc" customClass="FavoritesViewController" customModule="Katze" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="24h-iY-jFb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WHN-RK-m46">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h8M-jU-ZR5">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="estimatedItemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="lyz-Fo-78L" customClass="CatsCollectionViewCell" customModule="Katze" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="t0h-oF-7sK">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WHN-RK-m46" firstAttribute="top" secondItem="Llv-TB-PfC" secondAttribute="top" id="0wP-S6-KV5"/>
+                            <constraint firstItem="WHN-RK-m46" firstAttribute="leading" secondItem="Llv-TB-PfC" secondAttribute="leading" id="QjA-de-ib6"/>
+                            <constraint firstItem="Llv-TB-PfC" firstAttribute="bottom" secondItem="WHN-RK-m46" secondAttribute="bottom" id="YsH-Aw-JYl"/>
+                            <constraint firstItem="Llv-TB-PfC" firstAttribute="trailing" secondItem="WHN-RK-m46" secondAttribute="trailing" id="vgz-MB-En9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Llv-TB-PfC"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="bookmark" catalog="system" id="X71-hG-mUg"/>
+                    <connections>
+                        <outlet property="catsCollectionView" destination="WHN-RK-m46" id="YDp-p4-QQ1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YVy-Bz-wHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886.95652173913049" y="495.53571428571428"/>
+        </scene>
+        <!--Cats-->
+        <scene sceneID="Gbu-Ty-Fas">
+            <objects>
+                <viewController id="oAa-IX-hkG" customClass="CatsViewController" customModule="Katze" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="41T-4X-8TV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="R81-Lz-ISQ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xIU-Vw-TFe">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="estimatedItemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="bk2-Js-DTO" customClass="CatsCollectionViewCell" customModule="Katze" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nac-Ay-q8G">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="R81-Lz-ISQ" firstAttribute="leading" secondItem="jMp-g3-zOE" secondAttribute="leading" id="9me-JH-kOq"/>
+                            <constraint firstItem="jMp-g3-zOE" firstAttribute="bottom" secondItem="R81-Lz-ISQ" secondAttribute="bottom" id="R6W-4P-i29"/>
+                            <constraint firstItem="jMp-g3-zOE" firstAttribute="trailing" secondItem="R81-Lz-ISQ" secondAttribute="trailing" id="XJ0-si-ZpJ"/>
+                            <constraint firstItem="R81-Lz-ISQ" firstAttribute="top" secondItem="jMp-g3-zOE" secondAttribute="top" id="gcu-ed-Qnp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jMp-g3-zOE"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Cats" image="globe" catalog="system" id="JgG-Vm-oSt"/>
+                    <connections>
+                        <outlet property="catsCollectionView" destination="R81-Lz-ISQ" id="lZz-5X-C0V"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fEy-ea-Mrg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="-298"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="mlR-AO-9jX">
+            <objects>
+                <tabBarController id="DSb-fP-K6b" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qDx-6G-BVy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="oAa-IX-hkG" kind="relationship" relationship="viewControllers" id="rnX-ev-fH3"/>
+                        <segue destination="p7q-AC-Hgc" kind="relationship" relationship="viewControllers" id="cfe-jT-Et7"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h0U-lN-VzX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-600" y="87"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bookmark" catalog="system" width="56" height="64"/>
+        <image name="globe" catalog="system" width="64" height="60"/>
+    </resources>
+</document>

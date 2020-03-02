@@ -115,7 +115,7 @@ class NetworkController {
     /**
      Retrieves an image URL over the netwrok, and calls a handler upon completion.
      
-     - parameter imgURL: A string represents the image URL.
+     - parameter imgURL: A string represents the full image URL.
      - parameter completionHandler: The completion handler to call when the load request is complete. This handler is executed on the delegate queue.
      
      - remark: Checks if the image is available in the cache before fetching it over the network. If not present, the image is fetched and cached for future usage.
