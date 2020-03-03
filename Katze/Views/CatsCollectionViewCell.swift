@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol CatsCollectionViewCellProtocol {
-    func configure(image: UIImage?, isFav: Bool)
+protocol CatsCollectionViewCellDelegate {
+    func didTap(onRow row: Int)
 }
 
 class CatsCollectionViewCell: UICollectionViewCell {
@@ -17,6 +17,8 @@ class CatsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addToFavButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var delegate: CatsCollectionViewCellDelegate?
+    var row = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -72,6 +74,7 @@ class CatsCollectionViewCell: UICollectionViewCell {
         }
         
         addToFavButton.isSelected = !addToFavButton.isSelected
+        delegate?.didTap(onRow: row)
     }
     
 }

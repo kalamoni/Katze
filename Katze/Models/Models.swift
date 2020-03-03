@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Cat: Decodable {
+struct Cat: Codable, Equatable {
     let id: String
     let imageURL: String
     let width: Int
@@ -22,7 +22,7 @@ struct Cat: Decodable {
     }
 }
 
-struct ErrorResponse: Decodable {
+struct ErrorResponse: Codable {
     let message: String
     let status: Int
     let level: String

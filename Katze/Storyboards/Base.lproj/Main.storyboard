@@ -37,12 +37,20 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your favorite is empty!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-Qc-c54">
+                                <rect key="frame" x="88" y="431.5" width="238.5" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="24"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WHN-RK-m46" firstAttribute="top" secondItem="Llv-TB-PfC" secondAttribute="top" id="0wP-S6-KV5"/>
+                            <constraint firstItem="Adf-Qc-c54" firstAttribute="centerY" secondItem="24h-iY-jFb" secondAttribute="centerY" id="FH0-Ae-cQc"/>
                             <constraint firstItem="WHN-RK-m46" firstAttribute="leading" secondItem="Llv-TB-PfC" secondAttribute="leading" id="QjA-de-ib6"/>
                             <constraint firstItem="Llv-TB-PfC" firstAttribute="bottom" secondItem="WHN-RK-m46" secondAttribute="bottom" id="YsH-Aw-JYl"/>
+                            <constraint firstItem="Adf-Qc-c54" firstAttribute="centerX" secondItem="24h-iY-jFb" secondAttribute="centerX" id="oXY-Ip-Uzq"/>
                             <constraint firstItem="Llv-TB-PfC" firstAttribute="trailing" secondItem="WHN-RK-m46" secondAttribute="trailing" id="vgz-MB-En9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Llv-TB-PfC"/>
@@ -50,6 +58,7 @@
                     <tabBarItem key="tabBarItem" title="Favorites" image="bookmark" catalog="system" id="X71-hG-mUg"/>
                     <connections>
                         <outlet property="catsCollectionView" destination="WHN-RK-m46" id="YDp-p4-QQ1"/>
+                        <outlet property="favPlaceHolder" destination="Adf-Qc-c54" id="WVN-si-ZZL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVy-Bz-wHD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

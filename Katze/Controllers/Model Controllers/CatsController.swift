@@ -10,21 +10,65 @@ import UIKit
 
 class CatsController {
     
-    private init() { }
+    private init() {
+        loadFavorites()
+    }
     
     /// The shared instance of the cats controller singleton.
     static var shared = CatsController()
     
     /// The number of pages fetched so far.
-    var page = 0
+    private var page = 0
     
     /// Number of items to fetch per network call
-    let limit = 10
+    private let limit = 10
     
     /// Number of items to fetch per network call
-    func isFav(id: Int) -> Bool {
-        
-        return false
+    var favCats: [Cat] = []
+    
+    /**
+    Loads the favorite cats list from the local cache.
+     
+    - author: Mohamed Salama
+    */
+    private func loadFavorites() {
+        favCats = NetworkController.shared.loadFavCatsList()
+    }
+    
+    /**
+    Adds a cat object to the favorite list.
+    
+    - parameter cat: The `Cat` object to be added.
+    
+    - author: Mohamed Salama
+    */
+    func addToFav(_ cat: Cat) {
+        favCats.append(cat)
+        NetworkController.shared.saveFavCatsList(favCats)
+    }
+    
+    /**
+    Removes a cat object from the favorite list.
+    
+    - parameter cat: The `Cat` object to be remove.
+    
+    - author: Mohamed Salama
+    */
+    func removeFromFav(_ cat: Cat) {
+        favCats.removeAll { $0 == cat }
+        NetworkController.shared.saveFavCatsList(favCats)
+    }
+    
+    /**
+     Checks whether the `ID` of this cat object is added to the favorite list or not.
+     
+     - parameter id: The `ID` of the corresponding cat object.
+     - Returns: A bool represents the availability of the the cat object in the favorite list.
+     
+     - author: Mohamed Salama
+     */
+    func isFav(id: String) -> Bool {
+        return !favCats.filter { $0.id.hashValue == id.hashValue }.isEmpty
     }
     
     /**
@@ -49,14 +93,14 @@ class CatsController {
     }
     
     /**
-    Retrieves an image URL over the netwrok controller, and calls a handler upon completion.
-    
-    - parameter imgURL: A string represents the full image URL.
-    - parameter completionHandler: The completion handler to call when the load request is complete. This handler is executed on the delegate queue.
-    
-    - remark: Checks if the image is available in the cache before fetching it over the network. If not present, the image is fetched and cached for future usage.
-    - author: Mohamed Salama
-    */
+     Retrieves an image URL over the netwrok controller, and calls a handler upon completion.
+     
+     - parameter imgURL: A string represents the full image URL.
+     - parameter completionHandler: The completion handler to call when the load request is complete. This handler is executed on the delegate queue.
+     
+     - remark: Checks if the image is available in the cache before fetching it over the network. If not present, the image is fetched and cached for future usage.
+     - author: Mohamed Salama
+     */
     func fetchImage(withURL imgURL: String, completionHandler: @escaping (_ image: UIImage?) -> Void) {
         NetworkController.shared.fetchImage(withURL: imgURL) { (result) in
             switch result {

@@ -17,6 +17,7 @@ class NetworkController {
     /// The shared instance of the Netwrok controller singleton.
     static let shared = NetworkController()
     
+    /// The shared local cache of the Netwrok controller singleton.
     private let imageCache = NSCache<NSString, UIImage>()
     
     private struct API {
@@ -24,6 +25,10 @@ class NetworkController {
         static let baseURL = "api.thecatapi.com"
         static let version = "/v1"
         static let search = "/images/search"
+    }
+    
+    private struct Constants {
+        static let userDefaultKey = "userDefaultKeyForFavorites"
     }
     
     /*
@@ -55,7 +60,7 @@ class NetworkController {
     }
     
     /*
-     // MARK: - Fetching Cats
+     // MARK: - Cats
      */
     /**
      Retrieves an array of cats objects over the netwrok, and calls a handler upon completion.
@@ -107,6 +112,34 @@ class NetworkController {
             }
         }.resume()
         
+    }
+    
+    /**
+    Persists the favorite cats list permanently to the `UserDefaults`.
+    
+    - parameter cat: The `Cat` object to be added.
+    
+    - author: Mohamed Salama
+    */
+    func saveFavCatsList(_ catList: [Cat]) {
+        if let encodedData = try? JSONEncoder().encode(catList) {
+            UserDefaults.standard.set(encodedData, forKey: Constants.userDefaultKey)
+        }
+    }
+    
+    /**
+    Loads the favorite cats list from the `UserDefaults`.
+    
+    - returns: The favorite `Cat` list.
+    
+    - author: Mohamed Salama
+    */
+    func loadFavCatsList() -> [Cat] {
+        if let userData = UserDefaults.standard.data(forKey: Constants.userDefaultKey), let cats = try? JSONDecoder().decode([Cat].self, from: userData) {
+            return cats
+        } else {
+            return []
+        }
     }
     
     /*

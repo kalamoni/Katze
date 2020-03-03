@@ -1,5 +1,5 @@
 //
-//  CatsViewController.swift
+//  FavoritesViewController.swift
 //  Katze
 //
 //  Created by Mohamed Salama on 3/2/20.
@@ -8,25 +8,26 @@
 
 import UIKit
 
-class CatsViewController: UIViewController {
+class FavoritesViewController: UIViewController {
     
+    @IBOutlet weak var favPlaceHolder: UILabel!
     @IBOutlet weak var catsCollectionView: UICollectionView!
     
     private let progressHUD = ProgressHUD(text: "Loading")
     private var cats: [Cat] = []
     
-    struct Constants {
+    private struct Constants {
         static let cellIdentifier = String(describing: CatsCollectionViewCell.self)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScene()
-        fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        catsCollectionView.reloadData()
+        reloadData()
     }
     
     private func setupScene() {
@@ -37,55 +38,27 @@ class CatsViewController: UIViewController {
         catsCollectionView.register(nib, forCellWithReuseIdentifier: Constants.cellIdentifier)
     }
     
-    /*
-     // MARK: - Class Methods
-     */
-    
-    /**
-     Fetches cats data over the network using Cats Controller.
-     
-     - author: Mohamed Salama
-     */
-    func fetchData() {
-        view.addSubview(progressHUD)
-        CatsController.shared.fetchCats { cats in
-            DispatchQueue.main.async {
-                self.progressHUD.removeFromSuperview()
-                self.cats = self.cats + cats
-                self.catsCollectionView.reloadData()
-            }
-        }
+    private func reloadData() {
+        favPlaceHolder.isHidden = !CatsController.shared.favCats.isEmpty
+        catsCollectionView.reloadData()
     }
     
 }
 
-extension CatsViewController: UICollectionViewDelegate {
-    
-    // MARK: - UICollectionViewDelegate
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard indexPath.row == cats.count - 1 else {
-            return
-        }
-        fetchData()
-    }
-    
-}
-
-extension CatsViewController: UICollectionViewDataSource {
+extension FavoritesViewController: UICollectionViewDataSource {
     
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cats.count
+        return CatsController.shared.favCats.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath)
         
-        guard let catsCell = cell as? CatsCollectionViewCell, indexPath.row < cats.count else { return cell }
-        let cat = cats[indexPath.row]
+        guard let catsCell = cell as? CatsCollectionViewCell, indexPath.row < CatsController.shared.favCats.count else { return cell }
+        let cat = CatsController.shared.favCats[indexPath.row]
         catsCell.tag = cat.id.hashValue
         catsCell.resetCell()
         catsCell.delegate = self
@@ -104,7 +77,7 @@ extension CatsViewController: UICollectionViewDataSource {
     
 }
 
-extension CatsViewController: UICollectionViewDelegateFlowLayout {
+extension FavoritesViewController: UICollectionViewDelegateFlowLayout {
     /*
      // MARK: - UICollectionViewDelegateFlowLayout
      
@@ -127,14 +100,11 @@ extension CatsViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension CatsViewController: CatsCollectionViewCellDelegate {
+extension FavoritesViewController: CatsCollectionViewCellDelegate {
     func didTap(onRow row: Int) {
-        guard row < cats.count else { return }
-        let cat = cats[row]
-        if CatsController.shared.isFav(id: cat.id) {
-            CatsController.shared.removeFromFav(cat)
-        } else {
-            CatsController.shared.addToFav(cat)
-        }
+        guard row < CatsController.shared.favCats.count else { return }
+        let cat = CatsController.shared.favCats[row]
+        CatsController.shared.removeFromFav(cat)
+        reloadData()
     }
 }
